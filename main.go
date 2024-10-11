@@ -19,6 +19,11 @@ const (
 	scaleFactor      = 2  // Scale factor to draw the character twice as large
 )
 
+// const (
+// 	screenWidth  = 320
+// 	screenHeight = 240
+// )
+
 var (
 	skeletonImage *ebiten.Image
 )
@@ -148,8 +153,9 @@ func main() {
 		x: 0,
 		y: 0,
 	}
-
+	// ebiten.SetWindowSize(screenWidth, screenHeight)
 	// Enable fullscreen
+
 	ebiten.SetFullscreen(true)
 	ebiten.SetWindowTitle("Skeleton Animation Demo Fullscreen")
 
