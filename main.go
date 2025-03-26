@@ -1,13 +1,18 @@
 package main
 
 import (
+	"bytes"
+	_ "embed"
 	"image"
 	_ "image/png"
 	"log"
-	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 )
+
+//go:embed assets/skeleton_enemy.png
+var skeletonEnemyPNG []byte
+var skeletonImage *ebiten.Image
 
 const (
 	frameWidth       = 64 // Each frame is 64x64
@@ -23,10 +28,6 @@ const (
 // 	screenWidth  = 320
 // 	screenHeight = 240
 // )
-
-var (
-	skeletonImage *ebiten.Image
-)
 
 type Game struct {
 	count         int
@@ -136,16 +137,24 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) {
 
 func main() {
 	// Load skeletonImage.png from the assets directory
-	file, err := os.Open("assets/skeleton_enemy.png")
-	if err != nil {
-		log.Fatalf("Failed to open image: %v", err)
-	}
-	defer file.Close()
+	// file, err := os.Open("assets/skeleton_enemy.png")
+	// if err != nil {
+	// 	log.Fatalf("Failed to open image: %v", err)
+	// }
+	// defer file.Close()
 
-	img, _, err := image.Decode(file)
+	// img, _, err := image.Decode(file)
+	// if err != nil {
+	// 	log.Fatalf("Failed to decode image: %v", err)
+	// }
+	// skeletonImage = ebiten.NewImageFromImage(img)
+
+	// Load skeletonImage.png from embedded data
+	img, _, err := image.Decode(bytes.NewReader(skeletonEnemyPNG))
 	if err != nil {
-		log.Fatalf("Failed to decode image: %v", err)
+		log.Fatalf("Failed to decode embedded image: %v", err)
 	}
+	// Convert standard image.Image to an ebiten.Image
 	skeletonImage = ebiten.NewImageFromImage(img)
 
 	// Set initial character position to the center of the screen
