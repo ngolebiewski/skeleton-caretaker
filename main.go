@@ -162,8 +162,8 @@ func main() {
 	}
 	skeletonImage = ebiten.NewImageFromImage(img)
 
-	game := &Game{x: 100, y: 100, fullscreen: true}
-	ebiten.SetFullscreen(true) // Enable fullscreen mode at the start
+	game := &Game{x: 100, y: 100, fullscreen: false}
+	// ebiten.SetFullscreen(true) // Enable fullscreen mode at the start
 
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
