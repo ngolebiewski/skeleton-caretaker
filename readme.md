@@ -11,3 +11,6 @@ Run:
 
 Run with wasm:
 go run github.com/hajimehoshi/wasmserve@latest ./path/to/yourgame
+GOOS=js GOARCH=wasm go build -o skeleton.wasm      
+go run github.com/hajimehoshi/wasmserve@latest ./main.go
+
