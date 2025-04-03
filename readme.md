@@ -10,7 +10,11 @@ Run:
 `go run main.go`
 
 Run with wasm:
-go run github.com/hajimehoshi/wasmserve@latest ./path/to/yourgame
-GOOS=js GOARCH=wasm go build -o skeleton.wasm      
-go run github.com/hajimehoshi/wasmserve@latest ./main.go
+- Create Initial Build with WASM: `go run github.com/hajimehoshi/wasmserve@latest ./path/to/yourgame`
+- Then, or subsequent builds: `GOOS=js GOARCH=wasm go build -o skeleton.wasm`      
+- Run Server: `go run github.com/hajimehoshi/wasmserve@latest ./main.go`
 
+Controls:
+- Move: Arrow keys / touch screen high/low/right/left zone
+- Attack: Space / tap
+- Toggle Full Screen: F11 or F

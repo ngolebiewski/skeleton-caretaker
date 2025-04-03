@@ -97,7 +97,7 @@ func (g *Game) Update() error {
 				moving = true
 			}
 		}
-		if len(touches) > 1 {
+		if len(touches) > 1 || (len(touches) == 1 && inpututil.TouchPressDuration(touches[0]) == 1) {
 			g.isAttacking = true
 			g.attackCounter = 0
 		}
@@ -162,7 +162,9 @@ func main() {
 	}
 	skeletonImage = ebiten.NewImageFromImage(img)
 
-	game := &Game{x: 100, y: 100, fullscreen: false}
+	game := &Game{x: 100, y: 100, fullscreen: true}
+	ebiten.SetFullscreen(true) // Enable fullscreen mode at the start
+
 	if err := ebiten.RunGame(game); err != nil {
 		log.Fatal(err)
 	}
